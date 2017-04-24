@@ -901,7 +901,8 @@ var EasyAutocomplete = (function(scope) {
 			$container = "",
 			elementsList = [],
 			selectedElement = -1,
-			requestDelayTimeoutId;
+			requestDelayTimeoutId,
+			currentRequest = null;
 
 		scope.consts = consts;
 
@@ -1309,6 +1310,10 @@ var EasyAutocomplete = (function(scope) {
 									}
 
 								} else {
+									if (currentRequest) {
+										currentRequest.abort();
+									}
+									
 									hideContainer();
 								}
 								
@@ -1364,8 +1369,15 @@ var EasyAutocomplete = (function(scope) {
 
 							settings.data = config.get("preparePostData")(settings.data, inputPhrase);
 
-							$.ajax(settings) 
-								.done(function(data) {
+							currentRequest = $.ajax(
+									Object.assign({
+										beforeSend() {      
+									        if(currentRequest != null) {
+									            currentRequest.abort();
+									        }
+									    }
+									}, settings)
+								).done(function(data) {
 
 									var listBuilders = listBuilderService.init(data);
 
@@ -1485,7 +1497,7 @@ var EasyAutocomplete = (function(scope) {
 						
 						selectedElement = -1;
 						hideContainer();
-					}, 250);
+					}, 0);
 				});
 			}
 
