@@ -1373,7 +1373,7 @@ var EasyAutocomplete = (function(scope) {
 
 							currentRequest = $.ajax(
 									Object.assign({
-										beforeSend() {      
+										beforeSend: function() {      
 									        if(currentRequest != null) {
 									            currentRequest.abort();
 									        }
