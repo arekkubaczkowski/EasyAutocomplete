@@ -266,7 +266,7 @@ var EasyAutocomplete = (function(scope) {
 								}
 
 								if (listBuilders[builderIndex].header !== undefined && listBuilders[builderIndex].header.length > 0) {
-									$listContainer.append("<div class='eac-category' >" + listBuilders[builderIndex].header + "</div>");
+									$listContainer.append("<div class='eac-category' ><span>" + listBuilders[builderIndex].header + "</span></div>");
 								}
 
 								for(var i = 0, listDataLength = listData.length; i < listDataLength && counter < listBuilders[builderIndex].maxListSize; i += 1) {
