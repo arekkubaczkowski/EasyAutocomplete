@@ -83,7 +83,8 @@ var EasyAutocomplete = (function(scope){
 				onMouseOverEvent: function() {},
 				onMouseOutEvent: function() {},	
 				onShowListEvent: function() {},
-				onHideListEvent: function() {}
+				onHideListEvent: function() {},
+				onSearchEvent: function() {}
 			},
 
 			highlightPhrase: true,

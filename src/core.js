@@ -503,6 +503,7 @@ var EasyAutocomplete = (function(scope) {
 							return;
 						}
 
+						config.get("list").onSearchEvent();
 
 						if (config.get("data") !== "list-required") {
 
