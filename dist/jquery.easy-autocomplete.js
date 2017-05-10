@@ -1494,12 +1494,16 @@ var EasyAutocomplete = (function(scope) {
 			}
 
 			function bindBlur() {
-				$field.blur(function() {
+				$field.blur(function(e) {
+					var timeout = 250;
+
+					if (e.relatedTarget === null) {
+						timeout = 0;
+					}
 					setTimeout(function() { 
-						
 						selectedElement = -1;
 						hideContainer();
-					}, 0);
+					}, timeout);
 				});
 			}
 
