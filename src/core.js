@@ -543,7 +543,7 @@ var EasyAutocomplete = (function(scope) {
 							settings.data = config.get("preparePostData")(settings.data, inputPhrase);
 
 							currentRequest = $.ajax(
-									Object.assign({
+									$.extend({}, {
 										beforeSend: function() {      
 									        if(currentRequest != null) {
 									            currentRequest.abort();
