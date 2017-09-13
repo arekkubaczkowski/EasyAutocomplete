@@ -1219,11 +1219,10 @@ var EasyAutocomplete = (function(scope) {
 				bindKeydown();
 				bindKeypress();
 				bindFocus();
-				bindBlur();
 			}
 
 			function bindFocusOut() {
-				$field.focusout(function () {
+				$field.focusout(function (e) {
 
 					var fieldValue = $field.val(),
 						phrase;
@@ -1245,6 +1244,16 @@ var EasyAutocomplete = (function(scope) {
 							return;
 						}
 					}
+
+					var timeout = 250;
+
+					if (e.relatedTarget === null) {
+						timeout = 0;
+					}
+					setTimeout(function() { 
+						selectedElement = -1;
+						hideContainer();
+					}, timeout);
 				});
 			}
 
@@ -1490,20 +1499,6 @@ var EasyAutocomplete = (function(scope) {
 						showContainer();	
 					}
 									
-				});
-			}
-
-			function bindBlur() {
-				$field.focusout(function(e) {
-					var timeout = 250;
-
-					if (e.relatedTarget === null) {
-						timeout = 0;
-					}
-					setTimeout(function() { 
-						selectedElement = -1;
-						hideContainer();
-					}, timeout);
 				});
 			}
 
