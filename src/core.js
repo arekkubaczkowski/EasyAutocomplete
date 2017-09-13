@@ -670,7 +670,7 @@ var EasyAutocomplete = (function(scope) {
 			}
 
 			function bindBlur() {
-				$field.blur(function(e) {
+				$field.focusout(function(e) {
 					var timeout = 250;
 
 					if (e.relatedTarget === null) {
